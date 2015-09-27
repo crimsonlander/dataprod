@@ -1,0 +1,17 @@
+{
+    "contents" : "Random Forest\n========================================================\nauthor: Denis Kuzminykh\n\nDeveloping Data Products Course Project presentation\n\nRandom forest algorithm\n========================================================\n\nRandom forests are an ensemble learning method for classification, regression and other tasks, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. Random forests correct for decision trees' habit of overfitting to their training set.  \n[Wikipedia](https://en.wikipedia.org/wiki/Random_forest)\n\nRandom forest example\n========================================================\n\n```{r}\nset.seed(1)\nlibrary(randomForest)\ndata(iris)\ninTrain <- sample(1:nrow(iris), nrow(iris)*0.8)\ntrainingData <- iris[inTrain,]\ntestData <- iris[-inTrain,]\nrf <- randomForest(data=trainingData, \n                   Species ~ .)\npredicted <- predict(rf, testData)\n```\n\nRandom forest example, results:\n========================================================\n\n```{r, echo=FALSE}\npar(mfrow = c(2,1), mai=c(1,1,0.5,0.5))\nplot(testData$Petal.Length, testData$Petal.Width, col = as.integer(testData$Species) + 1, xlab = \"Petal length\", ylab = \"Petal width\")\ntitle(\"Real species\", xlab = \"Petal length\", ylab = \"Petal width\")\nplot(testData$Petal.Length, testData$Petal.Width, col = as.integer(predicted) + 1, xlab = \"Petal length\", ylab = \"Petal width\")\ntitle(\"Predicted species\")\n```\n\nThe app\n========================================================\n\nI have deployed an app where you can try random forest on more complex example: 'spam' dataset from 'kernlab' package. You can see how performance depends on number of trees and maximum number of nodes in trees.\n\nSidebar panel allows to choose the parameters, while main panel shows confusion matrix and some performance metrics.\n\nIt is available on [shinyapps.io](https://crimsonlander.shinyapps.io/coursera_dev_data_products_proj)",
+    "created" : 1443389238972.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "56744442",
+    "id" : "47EF3F21",
+    "lastKnownWriteTime" : 1443391267,
+    "path" : "~/dataprod project/presentation.Rpres",
+    "project_path" : "presentation.Rpres",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_presentation"
+}
