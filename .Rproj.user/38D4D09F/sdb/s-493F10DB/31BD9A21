@@ -1,0 +1,17 @@
+{
+    "contents" : "\n# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\nlibrary(caret)\nlibrary(randomForest)\nlibrary(kernlab)\nlibrary(e1071)\n\nshinyServer(function(input, output) {\n  data(\"spam\")\n  inTrain <- sample(1:nrow(spam), nrow(spam)*0.8)\n  \n  trainingData <- spam[inTrain,]\n  \n  testData <- spam[-inTrain,]\n  \n  getLabels <- reactive({\n    model <- randomForest(data=trainingData, type ~ ., ntree = input$ntrees, maxnodes = input$maxnodes)\n    labels <- predict(model, testData)\n    labels\n  })\n  \n  output$confusionMatrix <- renderPrint({\n    confusionMatrix(getLabels(), testData$type)\n  })\n\n})\n",
+    "created" : 1443351181082.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2917185592",
+    "id" : "31BD9A21",
+    "lastKnownWriteTime" : 1443388174,
+    "path" : "~/dataprod project/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

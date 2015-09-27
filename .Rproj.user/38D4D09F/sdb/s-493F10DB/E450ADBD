@@ -1,0 +1,18 @@
+{
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\nlibrary(caret)\n\nshinyUI(fluidPage(\n\n  # Application title\n  titlePanel(\"Random forest classification performance on spam dataset\"),\n\n  # Sidebar with a slider input for number of bins\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\"ntrees\",\n                  \"Number of trees:\",\n                  min = 1,\n                  max = 100,\n                  value = 5),\n      sliderInput(\"maxnodes\",\n                  \"Maximum number of nodes:\",\n                  min = 1,\n                  max = 100,\n                  value = 5),\n      helpText(\"This app shows performance of random forest on classification of emails from 'spam' dataset from 'kernlab' package.\",\n               \"You need to choose number of trees and maximum number of nodes in trees.\",\n               \"Random forest is trained on training set, which consists of 80% of the dataset, then tested on the rest of the data.\")\n    ),\n\n    # Show a plot of the generated distribution\n    mainPanel(\n      verbatimTextOutput(\"confusionMatrix\")\n    )\n  )\n))\n",
+    "created" : 1443351180935.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "276215975",
+    "id" : "E450ADBD",
+    "lastKnownWriteTime" : 1443388425,
+    "path" : "~/dataprod project/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+        "notebook_format" : "html_document"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
